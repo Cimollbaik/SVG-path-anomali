@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SVG Anomaly Cleaner</title><meta name="theme-color" content="#12141a"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%237c9cff%27/%3E%3Cpath%20d%3D%27M14%2044C20%2014%2044%2014%2050%2044%27%20fill%3D%27none%27%20stroke%3D%27%230b1020%27%20stroke-width%3D%275%27%20stroke-linecap%3D%27round%27/%3E%3Ccircle%20cx%3D%2714%27%20cy%3D%2744%27%20r%3D%276%27/%3E%3Ccircle%20cx%3D%2750%27%20cy%3D%2744%27%20r%3D%276%27/%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2720%27%20r%3D%276%27/%3E%3C/svg%3E"><style>*{box-sizing:border-box}header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:linear-gradient(180deg,#171a24,#12141a)}header h1{line-height:1.2}.lg{width:38px;height:38px}.stp{margin-left:auto;font-size:12px;color:#8b91a5}.stp b{display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;background:#2c3040;color:#e8eaf0;margin:0 3px 0 8px;font-size:11px}
+summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}.pre{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:10px 0}.rec{font-style:normal;font-size:11px;color:#2ee59d;margin-left:4px}.set em{color:#7c9cff;font-style:normal}
+body{margin:0;background:#12141a;color:#e8eaf0;font:15px/1.5 system-ui,sans-serif}
+header{padding:14px 20px;border-bottom:1px solid #2c3040}h1{font-size:18px;margin:0}header span{color:#8b91a5;font-size:13px}
+main{max-width:1200px;margin:0 auto;padding:18px}.hidden{display:none!important}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid #2c3040;background:#1c1f28;color:#e8eaf0;padding:8px 14px}
+button.p{background:#7c9cff;border-color:#7c9cff;color:#0b1020;font-weight:600}button.s{padding:4px 10px;font-size:13px}button:hover{filter:brightness(1.15)}
+#dz{border:2px dashed #2c3040;border-radius:14px;text-align:center;padding:40px 20px;cursor:pointer}#dz.drag{border-color:#7c9cff;background:rgba(124,156,255,.08)}
+#dz small{color:#8b91a5;display:block}.card{background:#1c1f28;border:1px solid #2c3040;border-radius:12px;padding:14px;margin-bottom:14px}
+.set{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.set label{font-size:13px;color:#8b91a5;display:block}.set b{color:#e8eaf0}.set input{width:100%}.set small{display:block;font-size:12px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}.gc{border:1px solid #2c3040;border-radius:10px;padding:8px;background:#181b23}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:4px}.th{background:#fff;border-radius:6px;overflow:hidden}.th img{display:block;width:100%}
+.m{font-size:12px;color:#8b91a5;margin:4px 0}.chip{font-size:11px;padding:1px 8px;border-radius:99px;margin-right:4px;background:rgba(255,180,84,.16);color:#ffb454}.ok{background:rgba(46,229,157,.15);color:#2ee59d}
+#rv{position:fixed;inset:0;background:rgba(8,10,16,.98);overflow:auto;padding:20px;z-index:9}#rv .in{max-width:1100px;margin:0 auto}
+.fl{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.fl label{background:#1c1f28;border:1px solid #2c3040;border-radius:8px;padding:3px 8px;font-size:12px;cursor:pointer}
+.rvg{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:14px;margin-top:10px;align-items:start}.pv{position:sticky;top:8px}
+#rl{max-height:78vh;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:3px 4px 3px 3px}#rl summary{font-size:12px;color:#8b91a5;padding:6px 2px}
+.it{display:grid;grid-template-columns:auto auto 1fr auto;gap:8px;align-items:center;border:2px solid #2c3040;border-radius:10px;padding:7px 10px;background:#1c1f28;cursor:pointer;font-size:13px;margin-bottom:6px}
+.it small{display:block;color:#8b91a5;font-size:11px}.it input{width:22px;height:22px;accent-color:#ff2d55}
+.it.rm{border-color:#ff2d55;background:rgba(255,45,85,.13)}.it.kp{border-color:#2ee59d;background:rgba(46,229,157,.10)}.it.fc{box-shadow:0 0 0 3px #ffd400}
+.it .st{font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:99px}.it.rm .st{background:#ff2d55;color:#fff}.it.kp .st{background:#2ee59d;color:#06281b}
+.it{grid-template-columns:68px auto 1fr auto!important;gap:10px!important}.it .sw{display:none}.tv{width:68px;height:68px;border-radius:8px;overflow:hidden;background:#fff;border:2px solid #2c3040;flex:none}.tv svg{display:block;width:100%;height:100%}
+.it.rm .tv{border-color:#ff2d55}.it.kp .tv{border-color:#2ee59d}.it.fc .tv{border-color:#ffd400}.it.rm .tp{stroke:#ff003c;fill:rgba(255,0,60,.35)}.it.kp .tp{stroke:#2ee59d;fill:none}
+.tp{stroke-width:3;vector-effect:non-scaling-stroke}.it .st{cursor:pointer;padding:7px 12px!important;font-size:11px!important;user-select:none;white-space:nowrap}.it .st:active{transform:scale(.95)}
+.it.kp{opacity:.92}.it.kp b{color:#2ee59d}.it.rm b{color:#ff6b86}.it .pos{color:#8b91a5;font-size:11px}
+.seg{display:inline-flex;border:1px solid #2c3040;border-radius:8px;overflow:hidden}.seg button{border:0;border-radius:0;border-right:1px solid #2c3040}.seg button:last-child{border-right:0}.seg button.on{background:#7c9cff;color:#0b1020;font-weight:700}
+.vmn{font-size:12px;color:#ffd400;margin:6px 0 0;min-height:18px}
+.sw{width:20px;height:20px;border-radius:5px;border:1px solid rgba(255,255,255,.35)}
+.lg2{font-size:12px;color:#8b91a5;margin:8px 0}.lg2 b{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 12px}.lg2 b:first-child{margin-left:0}
+@media(max-width:820px){.rvg{grid-template-columns:1fr}.pv{top:0;z-index:2;background:#0e1016;padding-bottom:6px}.pv svg{max-height:42vh}#rl{max-height:none}}
+</style></head><body>
+<header><svg class="lg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#7c9cff"/><path d="M14 44C20 14 44 14 50 44" fill="none" stroke="#0b1020" stroke-width="5" stroke-linecap="round"/><circle cx="14" cy="44" r="6" fill="#0b1020"/><circle cx="50" cy="44" r="6" fill="#0b1020"/><circle cx="32" cy="20" r="6" fill="#0b1020"/></svg><div><h1>SVG Anomaly Cleaner</h1><span>Deteksi &amp; bersihkan path anomali hasil auto-trace · di perangkatmu</span></div><div class="stp"><b>1</b> Atur <b>2</b> Unggah <b>3</b> Tinjau <b>4</b> Unduh</div></header>
+<main><details class="card" id="st" open><summary><b>⚙ Pengaturan tambahan</b><span class="m"> · atur sebelum atau sesudah unggah; hasil dihitung ulang otomatis</span></summary>
+<div class="pre"><span class="m">Preset:</span><button class="s" data-p="0">Hati-hati (file rumit, 300+ path)</button><button class="s p" data-p="1">Seimbang (file sederhana, di bawah 150 path)</button><button class="s" data-p="2">Agresif</button></div>
+<div class="set">
+<label>Bintik kecil: buang jika &lt; <b id="vS"></b> px² <i class="rec" id="rS"></i><small>Titik/noise kecil, apa pun warnanya. <em>Saran 60. Masih ada titik noise → 100-150. Detail sangat kecil ikut hilang → 30.</em></small><input id="sS" type="range" min="0" max="300" value="60"></label>
+<label>Serpihan warna mirip: ΔE &lt; <b id="vD"></b> <i class="rec" id="rD"></i><small>Bentuk kecil yang warnanya hampir sama dengan di bawahnya. <em>Saran 14. Di bawah 8 hanya yang nyaris identik; di atas 20 mulai menyentuh bentuk pucat yang disengaja.</em></small><input id="sD" type="range" min="0" max="30" value="14"></label>
+<label>Ukuran maks. serpihan: <b id="vF"></b> px² <i class="rec" id="rF"></i><small>Bentuk lebih besar dari ini tidak disentuh. <em>Saran 3600. Halo besar masih tersisa → 6000. Objek pucat kecil yang disengaja terhapus → 1500.</em></small><input id="sF" type="range" min="200" max="12000" step="100" value="3600"></label>
+<label>Tipis: buang jika tebal &lt; <b id="vT"></b> px <i class="rec" id="rT"></i><small>0 = nonaktif. <em>Saran 3. Garis detail tipis ikut hilang → 2 atau 0. Masih ada goresan tipis aneh → 4.</em></small><input id="sT" type="range" min="0" max="8" step="0.5" value="3"></label>
+<label>Gabungkan warna mirip: ΔE &le; <b id="vM"></b> <i class="rec" id="rM"></i><small>0 = nonaktif. <em>Saran 0. Aktifkan 3-5 hanya bila warna hampir kembar (mis. dua biru tua) membuat path berlebih.</em></small><input id="sM" type="range" min="0" max="12" value="0"></label></div></details>
+<div id="dz"><b>Tarik &amp; lepas SVG (boleh banyak)</b><span> atau ketuk untuk memilih</span><small>Sertakan PNG aslinya (nama sama) untuk bukti akurasi. Khusus SVG berisi &lt;path&gt; hasil auto-trace.</small><input id="fi" type="file" accept=".svg,.png,image/svg+xml,image/png" multiple hidden></div>
+<div id="app" class="hidden"><div class="card"><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><b id="sum"></b><span style="flex:1"></span><button id="bz" class="p">⬇ Unduh semua (ZIP)</button><button id="ba">＋ Tambah file</button><button id="bc">Hapus semua</button></div></div>
+<div id="hint" class="card hidden" style="font-size:13px"></div><div id="gal" class="gal"></div></div></main>
+<div id="rv" class="hidden"><div class="in"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button id="rx">✕ Tutup</button><b id="rn"></b><span style="flex:1"></span><span class="m" id="rc"></span><button class="s" id="rba">Buang semua</button><button class="s" id="rbk">Pertahankan semua</button><button class="s" id="rzb">🔍 Zoom otomatis: ON</button></div>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px"><span class="m">Gambar:</span><span class="seg" id="vms"><button class="s on" data-vm="ov">Penanda</button><button class="s" data-vm="res">Hasil akhir</button><button class="s" data-vm="org">Asli</button></span><span class="m" style="margin-left:10px">Daftar:</span><span class="seg" id="fls"><button class="s on" data-f="all">Semua</button><button class="s" data-f="rm">Dibuang</button><button class="s" data-f="kp">Dipertahankan</button></span></div>
+<div class="lg2"><b style="background:#ff2d55"></b>merah = akan dibuang (kotak tercentang)<b style="background:#2ee59d"></b>hijau = dipertahankan<b style="background:#ffd400"></b>kuning = path yang sedang dipilih · </div><div class="lg2" style="margin-top:0"><b style="background:#fff;border:1px solid #888"></b>Ketuk <u>foto kecil / baris</u> = lihat path itu di gambar &nbsp;·&nbsp; ketuk <u>kotak centang atau tombol DIBUANG / DIPERTAHANKAN</u> = ubah keputusan &nbsp;·&nbsp; <u>Hasil akhir</u> = gambar tanpa path yang dibuang</div>
+<div class="rvg"><div class="pv"><div class="th" id="rs"></div></div><div id="rl"></div></div></div></div>
+<script>
+const $=id=>document.getElementById(id);const files=[],pngs={};
+const esc=v=>String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const norm=n=>n.toLowerCase().replace(/\.(svg|png)$/,'').replace(/^auto-trace-/,'').replace(/-\d{9,}$/,'').replace(/[^a-z0-9]/g,'');
+const hex=s=>{s=(s||'').trim();let m=s.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);if(m){let h=m[1];if(h.length==3)h=[...h].map(c=>c+c).join('');return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}m=s.match(/^rgb\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/);return m?[+m[1],+m[2],+m[3]]:null};
+const lab=c=>{c=c.map(v=>{v/=255;return v>.04045?Math.pow((v+.055)/1.055,2.4):v/12.92});const x=(c[0]*.4124+c[1]*.3576+c[2]*.1805)/.9505,y=c[0]*.2126+c[1]*.7152+c[2]*.0722,z=(c[0]*.0193+c[1]*.1192+c[2]*.9505)/1.089;const f=t=>t>.008856?Math.cbrt(t):7.787*t+16/116;return[116*f(y)-16,500*(f(x)-f(y)),200*(f(y)-f(z))]};
+const dE=(a,b)=>{const p=lab(a),q=lab(b);return Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2])};
+const tick=()=>new Promise(r=>setTimeout(r,0));
+const gsv=document.createElementNS('http://www.w3.org/2000/svg','svg');gsv.style.cssText='position:absolute;width:0;height:0;visibility:hidden';document.body.appendChild(gsv);
+const gb=(p,vb)=>{try{const e=document.createElementNS('http://www.w3.org/2000/svg','path');e.setAttribute('d',p.d);gsv.appendChild(e);const b=e.getBBox();gsv.removeChild(e);return[b.x+p.tx-vb[0],b.y+p.ty-vb[1],b.x+b.width+p.tx-vb[0],b.y+b.height+p.ty-vb[1]]}catch(e){return[0,0,vb[2],vb[3]]}};
+function build(text,name){const doc=new DOMParser().parseFromString(text,'image/svg+xml');if(doc.querySelector('parsererror'))throw Error('bukan SVG valid');const root=doc.documentElement;const paths=[],bad=[];let extra='';
+for(const el of root.children){const n=el.localName;if(n=='path'){const a={};for(const t of el.attributes)a[t.name]=t.value;paths.push({a,d:a.d||'',fill:a.fill||''})}else if(['title','desc','metadata','defs','style'].includes(n))extra+=new XMLSerializer().serializeToString(el);else bad.push(n)}if(bad.length)throw Error('elemen belum didukung: '+[...new Set(bad)].join(', '));
+const css={};(extra.match(/<style[^>]*>[\s\S]*?<\/style>/g)||[]).forEach(t=>t.replace(/<!\[CDATA\[|\]\]>/g,'').replace(/<[^>]+>/g,'').replace(/\/\*[\s\S]*?\*\//g,'').replace(/([^{}]+)\{([^}]*)\}/g,(_,sel,body)=>{const f=body.match(/(?:^|;)\s*fill\s*:\s*([^;]+)/);if(f)sel.split(',').forEach(x=>{x=x.trim();if(x[0]=='.')css[x.slice(1)]=f[1].trim()})}));
+paths.forEach(p=>{let f=p.a.fill;if(p.a.class)p.a.class.split(/\s+/).forEach(c=>{if(css[c])f=css[c]});const sf=(p.a.style||'').match(/(?:^|;)\s*fill\s*:\s*([^;]+)/);if(sf)f=sf[1].trim();p.fill=(f||'#000000').trim();p.none=p.fill=='none'});
+const grad={};(extra.match(/<(?:linear|radial)Gradient[\s\S]*?<\/(?:linear|radial)Gradient>/g)||[]).forEach(t=>{const id=(t.match(/\sid="([^"]+)"/)||[])[1],cs=(t.match(/stop-color="([^"]+)"/g)||[]).map(x=>hex(x.slice(12,-1))).filter(Boolean);if(id&&cs.length)grad[id]='rgb('+[0,1,2].map(i=>Math.round(cs.reduce((a,c)=>a+c[i],0)/cs.length)).join(',')+')'});
+paths.forEach(p=>{const g=p.fill.match(/^url\(#([^)]+)\)/);if(g&&grad[g[1]]){p.grad=true;p.fill=grad[g[1]]}});
+if(!paths.length)throw Error('tidak ada <path>');let vb=(root.getAttribute('viewBox')||'').trim().split(/[\s,]+/).map(Number);if(vb.length!=4||vb.some(isNaN)){vb=[0,0,parseFloat(root.getAttribute('width')),parseFloat(root.getAttribute('height'))];if(!(vb[2]>0&&vb[3]>0))throw Error('tanpa viewBox/ukuran')}
+const m={name,paths,extra,vb,W:vb[2],H:vb[3],root:[...root.attributes].map(a=>a.name+'="'+esc(a.value)+'"').join(' '),keep:{},svg:text};
+m.rs=Math.min(1,800/m.W);m.w=Math.round(m.W*m.rs);m.h=Math.round(m.H*m.rs);
+paths.forEach(p=>{const t=(p.a.transform||'').match(/translate\(\s*([-\d.e]+)[\s,]+([-\d.e]+)/);p.tx=t?+t[1]:0;p.ty=t?+t[2]:0;p.col=Object.keys(p.a).some(n=>/^(opacity|fill-opacity|clip-path|mask|filter|stroke)$/.test(n)&&p.a[n]!=='none')?null:hex(p.fill);p.p2=new Path2D(p.d);
+if(p.a.transform&&!t){p.bb=[0,0,vb[2],vb[3]];p.col=null}else if(/[^MCLZz\d\s.,eE+-]/.test(p.d))p.bb=gb(p,vb);else{const n=(p.d.match(/-?\d*\.?\d+(?:e-?\d+)?/g)||[]).map(Number);let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(let i=0;i+1<n.length;i+=2){x0=Math.min(x0,n[i]);x1=Math.max(x1,n[i]);y0=Math.min(y0,n[i+1]);y1=Math.max(y1,n[i+1])}p.bb=[x0+p.tx-vb[0],y0+p.ty-vb[1],x1+p.tx-vb[0],y1+p.ty-vb[1]]}});
+return m}
+const cv=document.createElement('canvas'),cx=cv.getContext('2d',{willReadFrequently:true});
+function draw(m,skip,x0,y0,rw,rh,only){cv.width=rw;cv.height=rh;cx.setTransform(1,0,0,1,0,0);cx.fillStyle='#fff';cx.fillRect(0,0,rw,rh);const rs=m.rs;
+m.paths.forEach((p,j)=>{const pp=m.paths[j];if(j==skip||pp.none||(only&&!only(j)))return;const b=p.bb;if(b[2]*rs<x0||b[0]*rs>x0+rw||b[3]*rs<y0||b[1]*rs>y0+rh)return;cx.setTransform(rs,0,0,rs,-x0+(p.tx-m.vb[0])*rs,-y0+(p.ty-m.vb[1])*rs);cx.fillStyle=p.fill;cx.fill(p.p2)});cx.setTransform(1,0,0,1,0,0);return cx.getImageData(0,0,rw,rh)}
+async function analyze(m){const rs=m.rs;for(let k=1;k<m.paths.length;k++){const p=m.paths[k];p.met=null;if(!p.col)continue;const b=p.bb;
+if((b[2]-b[0])*(b[3]-b[1])>=.9*m.W*m.H)continue;
+const x0=Math.max(0,Math.floor(b[0]*rs)-2),y0=Math.max(0,Math.floor(b[1]*rs)-2),x1=Math.min(m.w,Math.ceil(b[2]*rs)+2),y1=Math.min(m.h,Math.ceil(b[3]*rs)+2),rw=x1-x0,rh=y1-y0;if(rw<=0||rh<=0)continue;
+const A=draw(m,-1,x0,y0,rw,rh).data,B=draw(m,k,x0,y0,rw,rh).data,mk=new Uint8Array(rw*rh);let n=0,sr=0,sg=0,sb=0;
+for(let i=0;i<rw*rh;i++){const o=i*4;if(Math.max(Math.abs(A[o]-B[o]),Math.abs(A[o+1]-B[o+1]),Math.abs(A[o+2]-B[o+2]))>20){mk[i]=1;n++;sr+=B[o];sg+=B[o+1];sb+=B[o+2]}}
+let per=0;if(n){for(let y=0;y<rh;y++)for(let x=0;x<rw;x++){const i=y*rw+x;if(mk[i]&&(!x||!y||x==rw-1||y==rh-1||!mk[i-1]||!mk[i+1]||!mk[i-rw]||!mk[i+rw]))per++}}
+p.met={n,A:n/rs/rs,de:n?dE(p.col,[sr/n,sg/n,sb/n]):0,th:n?2*(n/rs/rs)/Math.max(1,per/rs):0};
+if(k%12==0){$('sum').textContent='Menganalisis '+m.name+' · '+k+'/'+m.paths.length;await tick()}}m.na=m.paths.filter(p=>p.met).length}
+const cfg=()=>({S:+$('sS').value,D:+$('sD').value,F:+$('sF').value,T:+$('sT').value,M:+$('sM').value});
+function classify(m){const c=cfg(),f=m.W*m.H/(1600*900);m.flag={};m.paths.forEach((p,k)=>{const t=p.met;if(!t)return;let r=null;
+if(t.n<=1)r='tersembunyi';else if(t.A<c.S*f)r='bintik';else if(t.de<c.D&&t.A<c.F*f)r='serpihan';else if(c.T>0&&t.th<c.T*Math.sqrt(f)&&t.A<c.F*f)r='tipis';
+if(r)m.flag[k]=r});}
+const removed=(m,k)=>m.flag[k]&&m.keep[k]!==true;
+function output(m){const c=cfg();let fills=m.paths.map(p=>p.fill);
+if(c.M>0){const cnt={};m.paths.forEach((p,k)=>{if(!removed(m,k)&&p.col&&!p.grad)cnt[p.fill]=(cnt[p.fill]||0)+1});const reps=[];Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]).forEach(f=>{const col=hex(f);const r=reps.find(r=>dE(r.col,col)<=c.M);if(r)r.map.push(f);else reps.push({f,col,map:[f]})});const mp={};reps.forEach(r=>r.map.forEach(f=>mp[f]=r.f));fills=fills.map((f,k)=>m.paths[k].grad?f:(mp[f]||f))}
+const out=m.paths.map((p,k)=>{if(removed(m,k))return'';const at={...p.a};if(fills[k]!==p.fill){if(at.class||at.style)at.style='fill:'+fills[k]+';'+(at.style||'').replace(/(^|;)\s*fill\s*:[^;]*;?/,'$1');else at.fill=fills[k]}return'<path '+Object.keys(at).map(n=>n+'="'+esc(at[n])+'"').join(' ')+'/>'}).filter(Boolean);
+return'<svg '+m.root+'>\n'+m.extra+out.join('\n')+'\n</svg>\n'}
+function render(m,list){const d=draw(m,-1,0,0,m.w,m.h,list?(j=>list(j)):null);return d.data}
+function pdiff(a,b){let n=0;for(let i=0;i<a.length;i+=4)if(Math.max(Math.abs(a[i]-b[i]),Math.abs(a[i+1]-b[i+1]),Math.abs(a[i+2]-b[i+2]))>40)n++;return n/(a.length/4)*100}
+async function pngData(m){const f=pngs[norm(m.name)];if(!f)return null;const bm=await createImageBitmap(f);cv.width=m.w;cv.height=m.h;cx.setTransform(1,0,0,1,0,0);cx.fillStyle='#fff';cx.fillRect(0,0,m.w,m.h);cx.drawImage(bm,0,0,m.w,m.h);return cx.getImageData(0,0,m.w,m.h).data}
+async function refresh(){let tot=0,rem=0;for(const m of files){if(m.err)continue;classify(m);m.out=output(m);const nF=Object.keys(m.flag).filter(k=>removed(m,k)).length;m.nrem=nF;tot+=m.paths.length;rem+=nF;
+const A=render(m);if(!m.t0)m.t0=cv.toDataURL();const B=render(m,j=>!removed(m,j));m.t1=cv.toDataURL();m.dv=pdiff(A,B);if(m.png===undefined)m.png=await pngData(m);if(m.png)m.dpA=pdiff(A,m.png),m.dpB=pdiff(B,m.png);
+}
+$('sum').textContent=files.length+' file · path '+tot+' → '+(tot-rem)+' · anomali dibuang '+rem;gal()}
+function gal(){const g=$('gal');g.innerHTML='';files.forEach((m,i)=>{const d=document.createElement('div');d.className='gc';if(m.err){d.innerHTML='<b>'+esc(m.name)+'</b><div class="m">Gagal: '+esc(m.err)+'</div>';g.appendChild(d);return}
+const cat={};Object.keys(m.flag).forEach(k=>{if(removed(m,k))cat[m.flag[k]]=(cat[m.flag[k]]||0)+1});
+d.innerHTML='<div class="pair"><div class="th"><img src="'+m.t0+'"></div><div class="th"><img src="'+m.t1+'"></div></div><b style="font-size:13px">'+esc(m.name)+'</b><div class="m">Path '+m.paths.length+' → '+(m.paths.length-m.nrem)+' · dianalisis '+m.na+'</div><div>'+(m.na===0?'<span class="chip">⚠ 0 path dianalisis — hasil tidak bisa diandalkan</span>':m.nrem?Object.entries(cat).map(([k,v])=>'<span class="chip">'+k+' '+v+'</span>').join(''):'<span class="chip ok">Bersih</span>')+'</div><div class="m">Perubahan visual: '+m.dv.toFixed(2)+'%'+(m.png?'<br>Selisih vs PNG: '+m.dpA.toFixed(2)+'% → '+m.dpB.toFixed(2)+'%':'')+'</div><div style="display:flex;gap:6px"><button class="s" data-r="'+i+'">Tinjau</button><button class="s" data-d="'+i+'">Unduh</button></div>';g.appendChild(d)})}
+const CAT={tersembunyi:'tertutup path lain, tidak terlihat',bintik:'titik sangat kecil',serpihan:'warna mirip dengan yang di bawahnya',tipis:'bentuk sangat tipis'};
+let RV=null,zoomOn=true;
+function review(i){const m=files[i];RV=m;m.focus=null;$('rv').classList.remove('hidden');$('rn').textContent=m.name;
+$('rs').innerHTML='<svg viewBox="'+m.vb.join(' ')+'" style="display:block;width:100%;max-height:72vh"><defs><g id="base">'+m.paths.map(p=>p.none?'':'<path d="'+esc(p.d)+'" transform="translate('+p.tx+','+p.ty+')" fill="'+esc(p.fill)+'"/>').join('')+'</g></defs><g id="main">'+m.paths.map((p,k)=>p.none?'':'<path data-k="'+k+'" d="'+esc(p.d)+'" transform="translate('+p.tx+','+p.ty+')" fill="'+esc(p.fill)+'"/>').join('')+'</g><g id="ov"></g></svg>';m.vm='ov';m.fl='all';document.querySelectorAll('#vms button').forEach(b=>b.classList.toggle('on',b.dataset.vm=='ov'));document.querySelectorAll('#fls button').forEach(b=>b.classList.toggle('on',b.dataset.f=='all'));
+const ks=Object.keys(m.flag).map(Number),vis=ks.filter(k=>m.flag[k]!='tersembunyi').sort((a,b)=>m.paths[b].met.A-m.paths[a].met.A),hid=ks.filter(k=>m.flag[k]=='tersembunyi');
+const it=k=>{const p=m.paths[k],t=p.met;return'<div class="it" data-k="'+k+'"><div class="tv" data-k="'+k+'"></div><input type="checkbox"><i class="sw" style="background:'+esc(p.fill)+'"></i><div><b>#'+k+' '+m.flag[k]+'</b> · '+Math.round(t.A)+' px² · ΔE '+t.de.toFixed(1)+'<small>'+CAT[m.flag[k]]+'</small><span class="pos">posisi '+Math.round((p.bb[0]+p.bb[2])/2/m.W*100)+'% kiri · '+Math.round((p.bb[1]+p.bb[3])/2/m.H*100)+'% atas</span></div><span class="st"></span></div>'};
+$('rl').innerHTML=ks.length?vis.map(it).join('')+(hid.length?'<details><summary>Tersembunyi ('+hid.length+') · tidak mengubah gambar, aman dibuang</summary>'+hid.map(it).join('')+'</details>':''):'<span class="m">Tidak ada anomali terdeteksi.</span>';
+if(m.io)m.io.disconnect();m.io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;m.io.unobserve(e.target);thumb(m,e.target)}),{rootMargin:'250px'});$('rl').querySelectorAll('.tv').forEach(d=>m.io.observe(d));
+paint()}
+function thumb(m,d){const k=+d.dataset.k,p=m.paths[k];if(!p||!p.bb)return;const b=p.bb,cx=(b[0]+b[2])/2+m.vb[0],cy=(b[1]+b[3])/2+m.vb[1],s=Math.max(Math.max(b[2]-b[0],b[3]-b[1])*5,m.W*.05),x=cx-s/2,y=cy-s/2;
+d.innerHTML='<svg viewBox="'+[x,y,s,s].join(' ')+'"><rect x="'+x+'" y="'+y+'" width="'+s+'" height="'+s+'" fill="#fff"/><use href="#base"/><path class="tp" d="'+esc(p.d)+'" transform="translate('+p.tx+','+p.ty+')"/></svg>'}
+function paint(){const m=RV;if(!m)return;const ks=Object.keys(m.flag).map(Number);let rm=0;
+$('rl').querySelectorAll('.it').forEach(el=>{const k=+el.dataset.k,r=!!removed(m,k);if(r)rm++;el.classList.toggle('rm',r);el.classList.toggle('kp',!r);el.classList.toggle('fc',m.focus===k);el.querySelector('input').checked=r;el.querySelector('.st').textContent=r?'DIBUANG':'DIPERTAHANKAN';el.style.display=(m.fl=='rm'&&!r)||(m.fl=='kp'&&r)?'none':''});
+const vm=m.vm||'ov';document.querySelectorAll('#main path[data-k]').forEach(el=>{el.style.display=vm=='res'&&removed(m,+el.dataset.k)?'none':''});
+const od=vm=='ov'?ks.filter(k=>k!==m.focus):[];if(m.focus!=null)od.push(m.focus);
+$('ov').innerHTML=od.map(k=>{const p=m.paths[k],r=removed(m,k),f=m.focus===k;return'<path d="'+esc(p.d)+'" transform="translate('+p.tx+','+p.ty+')" fill="'+(r?'rgba(255,0,60,.4)':'none')+'" stroke="'+(f?'#ffd400':r?'#ff003c':'#2ee59d')+'" stroke-width="'+(f?4:2)+'" vector-effect="non-scaling-stroke"/>'}).join('');
+const svg=$('rs').querySelector('svg');let vb=m.vb.slice();
+if(m.focus!=null){const b=m.paths[m.focus].bb,cx=(b[0]+b[2])/2+m.vb[0],cy=(b[1]+b[3])/2+m.vb[1],sz=Math.max(b[2]-b[0],b[3]-b[1]);
+$('ov').insertAdjacentHTML('beforeend','<circle cx="'+cx+'" cy="'+cy+'" r="'+(sz/2+Math.max(10,m.W*.012))+'" fill="none" stroke="#ffd400" stroke-width="3" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"/>');
+if(zoomOn){const w=Math.min(Math.max(sz*5,m.W*.1),m.W),h=w*m.H/m.W;vb=[Math.max(m.vb[0],Math.min(cx-w/2,m.vb[0]+m.W-w)),Math.max(m.vb[1],Math.min(cy-h/2,m.vb[1]+m.H-h)),w,h]}}
+svg.setAttribute('viewBox',vb.join(' '));
+$('rc').textContent='Dibuang '+rm+' · Dipertahankan '+(ks.length-rm);$('rzb').textContent='🔍 Zoom otomatis: '+(zoomOn?'ON':'OFF')}
+function focusK(k){const m=RV;m.focus=k;paint();const el=$('rl').querySelector('.it[data-k="'+k+'"]');if(el){const d=el.closest('details');if(d)d.open=true;el.scrollIntoView({block:'nearest'})}}
+$('rl').addEventListener('click',e=>{const el=e.target.closest('.it');if(!el||!RV)return;const m=RV,k=+el.dataset.k;
+if(e.target.matches('input')||e.target.classList.contains('st')){const want=e.target.matches('input')?e.target.checked:!removed(m,k);if(want)delete m.keep[k];else m.keep[k]=true}
+m.focus=k;paint()});
+$('rs').addEventListener('click',e=>{const m=RV,svg=$('rs').querySelector('svg');if(!m||!svg)return;const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const q=pt.matrixTransform(svg.getScreenCTM().inverse()),x=q.x-m.vb[0],y=q.y-m.vb[1],pad=Math.max(6,m.W*.006);let best=null,ba=1e18;
+Object.keys(m.flag).forEach(k=>{const b=m.paths[k].bb;if(x>=b[0]-pad&&x<=b[2]+pad&&y>=b[1]-pad&&y<=b[3]+pad){const a=(b[2]-b[0])*(b[3]-b[1]);if(a<ba){ba=a;best=+k}}});if(best!=null)focusK(best)});
+$('rba').onclick=()=>{if(RV){Object.keys(RV.flag).forEach(k=>delete RV.keep[k]);paint()}};$('rbk').onclick=()=>{if(RV){Object.keys(RV.flag).forEach(k=>RV.keep[k]=true);paint()}};$('rzb').onclick=()=>{zoomOn=!zoomOn;paint()};
+document.querySelectorAll('#vms button').forEach(b=>b.onclick=()=>{if(!RV)return;RV.vm=b.dataset.vm;document.querySelectorAll('#vms button').forEach(x=>x.classList.toggle('on',x==b));paint()});
+document.querySelectorAll('#fls button').forEach(b=>b.onclick=()=>{if(!RV)return;RV.fl=b.dataset.f;document.querySelectorAll('#fls button').forEach(x=>x.classList.toggle('on',x==b));paint()});
+document.addEventListener('keydown',e=>{if(e.key=='Escape'&&RV)$('rx').click()});
+async function add(list){const arr=[...list],svgs=arr.filter(f=>/\.svg$/i.test(f.name)),im=arr.filter(f=>/\.png$/i.test(f.name));im.forEach(f=>pngs[norm(f.name)]=f);
+$('app').classList.remove('hidden');$('dz').classList.add('hidden');$('st').open=false;
+for(const f of svgs){let m;try{m=build(await f.text(),f.name.replace(/\.svg$/i,''));await analyze(m)}catch(e){m={name:f.name,err:e.message}}files.push(m);await tick()}
+for(const m of files)if(!m.err&&m.png===undefined&&pngs[norm(m.name)])m.png=undefined;
+const ok=files.filter(m=>!m.err),avg=ok.length?ok.reduce((a,m)=>a+m.paths.length,0)/ok.length:0,hn=$('hint');
+if(avg>250){if(Object.keys(REC).every(id=>+$(id).value==REC[id]))applyPre(0,true);hn.classList.remove('hidden');hn.innerHTML='<b>File rumit terdeteksi</b> (rata-rata '+Math.round(avg)+' path). Pada file serupa, <b>Hati-hati</b> membuang sekitar 10-15% path dengan perubahan visual di bawah 0,2%, sedangkan <b>Seimbang</b> membuang 25-40% dengan perubahan sampai sekitar 1%. Periksa lewat Tinjau sebelum mengunduh. <button class="s" data-hp="0">Hati-hati</button> <button class="s" data-hp="1">Seimbang</button> <button class="s" data-hp="2">Agresif</button>'}else hn.classList.add('hidden');
+await refresh()}
+$('dz').onclick=()=>$('fi').click();$('fi').onchange=e=>{add(e.target.files);e.target.value=''};
+['dragenter','dragover'].forEach(v=>$('dz').addEventListener(v,e=>{e.preventDefault();$('dz').classList.add('drag')}));['dragleave','drop'].forEach(v=>$('dz').addEventListener(v,e=>{e.preventDefault();$('dz').classList.remove('drag')}));$('dz').addEventListener('drop',e=>add(e.dataTransfer.files));
+document.addEventListener('dragover',e=>e.preventDefault());document.addEventListener('drop',e=>{e.preventDefault();if(!$('app').classList.contains('hidden'))add(e.dataTransfer.files)});
+const lab2={sS:'vS',sD:'vD',sF:'vF',sT:'vT',sM:'vM'},REC={sS:60,sD:14,sF:3600,sT:3,sM:0},PRE=[{sS:30,sD:8,sF:1500,sT:2,sM:0},REC,{sS:120,sD:20,sF:6000,sT:4,sM:4}];
+const upd=()=>{Object.keys(lab2).forEach(id=>{$(lab2[id]).textContent=$(id).value;$('r'+id[1]).textContent=+$(id).value==REC[id]?'✓ sesuai saran':'saran: '+REC[id]});try{localStorage.setItem('sac',JSON.stringify(cfg()))}catch(e){}};
+try{const sv=JSON.parse(localStorage.getItem('sac')||'null');if(sv)Object.entries({sS:'S',sD:'D',sF:'F',sT:'T',sM:'M'}).forEach(([id,k])=>{if(sv[k]!=null)$(id).value=sv[k]})}catch(e){}
+Object.keys(lab2).forEach(id=>{$(id).oninput=upd;$(id).onchange=()=>{upd();if(files.length)refresh()}});upd();
+const applyPre=(i,q)=>{Object.entries(PRE[i]).forEach(([id,v])=>$(id).value=v);upd();if(!q&&files.length)refresh()};document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>applyPre(+b.dataset.p));
+document.addEventListener('click',e=>{const t=e.target;if(t.dataset.hp!==undefined)applyPre(+t.dataset.hp);if(t.dataset.r!==undefined)review(+t.dataset.r);if(t.dataset.d!==undefined){const m=files[+t.dataset.d];save(new Blob([m.out],{type:'image/svg+xml'}),m.name+'-bersih.svg')}});
+$('ba').onclick=()=>$('fi').click();$('rx').onclick=()=>{$('rv').classList.add('hidden');RV=null;refresh()};$('bc').onclick=()=>{files.length=0;$('app').classList.add('hidden');$('dz').classList.remove('hidden')};
+function save(b,n){const u=URL.createObjectURL(b),a=Object.assign(document.createElement('a'),{href:u,download:n});document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)}
+// ---- ZIP sederhana (tanpa kompresi, tanpa library) ----
+const CRC_T = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function crc32(buf) { let c = 0xFFFFFFFF; for (let i = 0; i < buf.length; i++) c = CRC_T[(c ^ buf[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function makeZip(entries) {
+  const enc = new TextEncoder(), chunks = [], central = []; let offset = 0;
+  const u16 = (n) => [n & 255, (n >> 8) & 255], u32 = (n) => [n & 255, (n >> 8) & 255, (n >> 16) & 255, (n >>> 24) & 255];
+  const now = new Date();
+  const dt = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+  const tm = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+  for (const e of entries) {
+    const name = enc.encode(e.name), crc = crc32(e.data), size = e.data.length;
+    const lh = new Uint8Array([0x50, 0x4b, 3, 4, ...u16(20), ...u16(0x0800), ...u16(0), ...u16(tm), ...u16(dt), ...u32(crc), ...u32(size), ...u32(size), ...u16(name.length), ...u16(0)]);
+    chunks.push(lh, name, e.data);
+    central.push(new Uint8Array([0x50, 0x4b, 1, 2, ...u16(20), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(tm), ...u16(dt), ...u32(crc), ...u32(size), ...u32(size), ...u16(name.length), ...u16(0), ...u16(0), ...u16(0), ...u16(0), ...u32(0), ...u32(offset)]), name);
+    offset += lh.length + name.length + size;
+  }
+  let cd = 0; central.forEach((c) => (cd += c.length));
+  const end = new Uint8Array([0x50, 0x4b, 5, 6, 0, 0, 0, 0, ...u16(entries.length), ...u16(entries.length), ...u32(cd), ...u32(offset), 0, 0]);
+  return new Blob([...chunks, ...central, end], { type: "application/zip" });
+}
+
+$('bz').onclick=()=>{const enc=new TextEncoder(),used=new Set(),ent=[];files.forEach(m=>{if(m.err)return;let n=m.name+'-bersih.svg',k=2;while(used.has(n))n=m.name+'-bersih ('+k+++').svg';used.add(n);ent.push({name:n,data:enc.encode(m.out)})});save(makeZip(ent),'svg-anomali-bersih.zip')};
+(()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');x.fillStyle='#7c9cff';x.beginPath();if(x.roundRect)x.roundRect(0,0,128,128,28);else x.rect(0,0,128,128);x.fill();x.strokeStyle=x.fillStyle='#0b1020';x.lineWidth=10;x.lineCap='round';x.beginPath();x.moveTo(28,88);x.bezierCurveTo(40,28,88,28,100,88);x.stroke();[[28,88],[100,88],[64,40]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,12,0,7);x.fill()});const u=c.toDataURL('image/png');const l=document.querySelector('link[rel=icon]');l.type='image/png';l.href=u;const t=document.createElement('link');t.rel='apple-touch-icon';t.href=u;document.head.appendChild(t)})();
+</script></body></html>
