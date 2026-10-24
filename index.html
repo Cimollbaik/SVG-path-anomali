@@ -36,6 +36,7 @@ button.p{background:#7c9cff;border-color:#7c9cff;color:#0b1020;font-weight:600}b
 <label>Bintik kecil: buang jika &lt; <b id="vS"></b> px² <i class="rec" id="rS"></i><small>Titik/noise kecil, apa pun warnanya. <em>Saran 60. Masih ada titik noise → 100-150. Detail sangat kecil ikut hilang → 30.</em></small><input id="sS" type="range" min="0" max="300" value="60"></label>
 <label>Serpihan warna mirip: ΔE &lt; <b id="vD"></b> <i class="rec" id="rD"></i><small>Bentuk kecil yang warnanya hampir sama dengan di bawahnya. <em>Saran 14. Di bawah 8 hanya yang nyaris identik; di atas 20 mulai menyentuh bentuk pucat yang disengaja.</em></small><input id="sD" type="range" min="0" max="30" value="14"></label>
 <label>Ukuran maks. serpihan: <b id="vF"></b> px² <i class="rec" id="rF"></i><small>Bentuk lebih besar dari ini tidak disentuh. <em>Saran 3600. Halo besar masih tersisa → 6000. Objek pucat kecil yang disengaja terhapus → 1500.</em></small><input id="sF" type="range" min="200" max="12000" step="100" value="3600"></label>
+<label>Serpihan: hanya yang tipis, tebal maks. <b id="vH"></b> px <i class="rec" id="rH"></i><small>Serpihan sejati (halo/sliver) itu tipis. Bentuk yang lebih tebal dari ini dianggap <em>bayangan/shading yang disengaja</em> dan dipertahankan. <em>Saran 7. Halo tebal masih tersisa → 10-12. Bayangan halus ikut hilang → 5. 0 = nonaktif (perilaku lama).</em></small><input id="sH" type="range" min="0" max="30" value="7"></label>
 <label>Tipis: buang jika tebal &lt; <b id="vT"></b> px <i class="rec" id="rT"></i><small>0 = nonaktif. <em>Saran 3. Garis detail tipis ikut hilang → 2 atau 0. Masih ada goresan tipis aneh → 4.</em></small><input id="sT" type="range" min="0" max="8" step="0.5" value="3"></label>
 <label>Gabungkan warna mirip: ΔE &le; <b id="vM"></b> <i class="rec" id="rM"></i><small>0 = nonaktif. <em>Saran 0. Aktifkan 3-5 hanya bila warna hampir kembar (mis. dua biru tua) membuat path berlebih.</em></small><input id="sM" type="range" min="0" max="12" value="0"></label></div></details>
 <div id="dz"><b>Tarik &amp; lepas SVG (boleh banyak)</b><span> atau ketuk untuk memilih</span><small>Sertakan PNG aslinya (nama sama) untuk bukti akurasi. Khusus SVG berisi &lt;path&gt; hasil auto-trace.</small><input id="fi" type="file" accept=".svg,.png,image/svg+xml,image/png" multiple hidden></div>
@@ -78,9 +79,9 @@ for(let i=0;i<rw*rh;i++){const o=i*4;if(Math.max(Math.abs(A[o]-B[o]),Math.abs(A[
 let per=0;if(n){for(let y=0;y<rh;y++)for(let x=0;x<rw;x++){const i=y*rw+x;if(mk[i]&&(!x||!y||x==rw-1||y==rh-1||!mk[i-1]||!mk[i+1]||!mk[i-rw]||!mk[i+rw]))per++}}
 p.met={n,A:n/rs/rs,de:n?dE(p.col,[sr/n,sg/n,sb/n]):0,th:n?2*(n/rs/rs)/Math.max(1,per/rs):0};
 if(k%12==0){$('sum').textContent='Menganalisis '+m.name+' · '+k+'/'+m.paths.length;await tick()}}m.na=m.paths.filter(p=>p.met).length}
-const cfg=()=>({S:+$('sS').value,D:+$('sD').value,F:+$('sF').value,T:+$('sT').value,M:+$('sM').value});
+const cfg=()=>({S:+$('sS').value,D:+$('sD').value,F:+$('sF').value,T:+$('sT').value,H:+$('sH').value,M:+$('sM').value});
 function classify(m){const c=cfg(),f=m.W*m.H/(1600*900);m.flag={};m.paths.forEach((p,k)=>{const t=p.met;if(!t)return;let r=null;
-if(t.n<=1)r='tersembunyi';else if(t.A<c.S*f)r='bintik';else if(t.de<c.D&&t.A<c.F*f)r='serpihan';else if(c.T>0&&t.th<c.T*Math.sqrt(f)&&t.A<c.F*f)r='tipis';
+if(t.n<=1)r='tersembunyi';else if(t.A<c.S*f)r='bintik';else if(t.de<c.D&&t.A<c.F*f&&(c.H<=0||t.th<c.H*Math.sqrt(f)))r='serpihan';else if(c.T>0&&t.th<c.T*Math.sqrt(f)&&t.A<c.F*f)r='tipis';
 if(r)m.flag[k]=r});}
 const removed=(m,k)=>m.flag[k]&&m.keep[k]!==true;
 function output(m){const c=cfg();let fills=m.paths.map(p=>p.fill);
@@ -139,9 +140,9 @@ await refresh()}
 $('dz').onclick=()=>$('fi').click();$('fi').onchange=e=>{add(e.target.files);e.target.value=''};
 ['dragenter','dragover'].forEach(v=>$('dz').addEventListener(v,e=>{e.preventDefault();$('dz').classList.add('drag')}));['dragleave','drop'].forEach(v=>$('dz').addEventListener(v,e=>{e.preventDefault();$('dz').classList.remove('drag')}));$('dz').addEventListener('drop',e=>add(e.dataTransfer.files));
 document.addEventListener('dragover',e=>e.preventDefault());document.addEventListener('drop',e=>{e.preventDefault();if(!$('app').classList.contains('hidden'))add(e.dataTransfer.files)});
-const lab2={sS:'vS',sD:'vD',sF:'vF',sT:'vT',sM:'vM'},REC={sS:60,sD:14,sF:3600,sT:3,sM:0},PRE=[{sS:30,sD:8,sF:1500,sT:2,sM:0},REC,{sS:120,sD:20,sF:6000,sT:4,sM:4}];
+const lab2={sS:'vS',sD:'vD',sF:'vF',sT:'vT',sH:'vH',sM:'vM'},REC={sS:60,sD:14,sF:3600,sT:3,sH:7,sM:0},PRE=[{sS:30,sD:8,sF:1500,sT:2,sH:5,sM:0},REC,{sS:120,sD:20,sF:6000,sT:4,sH:12,sM:4}];
 const upd=()=>{Object.keys(lab2).forEach(id=>{$(lab2[id]).textContent=$(id).value;$('r'+id[1]).textContent=+$(id).value==REC[id]?'✓ sesuai saran':'saran: '+REC[id]});try{localStorage.setItem('sac',JSON.stringify(cfg()))}catch(e){}};
-try{const sv=JSON.parse(localStorage.getItem('sac')||'null');if(sv)Object.entries({sS:'S',sD:'D',sF:'F',sT:'T',sM:'M'}).forEach(([id,k])=>{if(sv[k]!=null)$(id).value=sv[k]})}catch(e){}
+try{const sv=JSON.parse(localStorage.getItem('sac')||'null');if(sv)Object.entries({sS:'S',sD:'D',sF:'F',sT:'T',sH:'H',sM:'M'}).forEach(([id,k])=>{if(sv[k]!=null)$(id).value=sv[k]})}catch(e){}
 Object.keys(lab2).forEach(id=>{$(id).oninput=upd;$(id).onchange=()=>{upd();if(files.length)refresh()}});upd();
 const applyPre=(i,q)=>{Object.entries(PRE[i]).forEach(([id,v])=>$(id).value=v);upd();if(!q&&files.length)refresh()};document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>applyPre(+b.dataset.p));
 document.addEventListener('click',e=>{const t=e.target;if(t.dataset.hp!==undefined)applyPre(+t.dataset.hp);if(t.dataset.r!==undefined)review(+t.dataset.r);if(t.dataset.d!==undefined){const m=files[+t.dataset.d];save(new Blob([m.out],{type:'image/svg+xml'}),m.name+'-bersih.svg')}});
